@@ -1,14 +1,15 @@
 <template>
   <main>
-    <router-link to="/">
-      Products | 
+    <!-- <router-link to="/">
+      Products
     </router-link>
-    <router-link to="/cart">
-      Go to cart
-    </router-link>
-    <router-view />
+    <router-view /> -->
+    <Cart />
+    <Products />
   </main>
 </template>
 
 <script setup>
+import Products from '@/views/Products.vue';
+import Cart from '@/views/Cart.vue';
 </script>

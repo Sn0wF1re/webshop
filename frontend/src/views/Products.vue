@@ -1,5 +1,5 @@
 <script setup>
-import ProductCard from '../components/ProductCard.vue'
+import ProductCard from '@/components/ProductCard.vue'
 </script>
 
 <template>
@@ -12,6 +12,7 @@ import ProductCard from '../components/ProductCard.vue'
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin-top: 2rem;
   justify-items: center;
   align-items: center;
 }
