@@ -13,11 +13,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 1rem 0;
     padding: 1rem;
-    margin: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 16px solid #E47E30;
+    border-radius: 1.5rem;
     width: 15rem;
+    background-color: whitesmoke;
     img {
         width: 100%;
         height: 10rem;

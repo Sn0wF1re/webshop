@@ -20,7 +20,10 @@
       <div class="summary">
           <h2>Summary</h2>
           <p>Total: $0.00</p>
-          <button>Checkout</button>
+          <div class="payment-gateways">
+            <button class="crypto" @click="handlePayment('crypto')">Pay with Crypto</button>
+            <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
+          </div>
       </div>
     </div>
 </template>
@@ -32,6 +35,26 @@ const showCartInfo = ref(false);
 const showCart = () => {
   showCartInfo.value = !showCartInfo.value;
 }
+
+// async handlePayment(gateway) {
+//   try {
+//     const checkoutData = await cartStore.checkout(gateway);
+//     if (gateway == 'stripe') {
+//       const stripe = await loadStripe('your-key');
+//       const { error } = await stripe.redirectToCheckout({
+//         sessionId: checkoutData.sessionId,
+//       });
+  
+//       if (error) {
+//         console.error(`Stripe redirect error: ${error}`);
+//       }
+//     } else if (gateway == 'crypto') {
+//       window.location.href = checkoutData.url;
+//     }
+//   } catch(err) {
+//     console.error(`Checkout error: ${err}`);
+//   }
+// }
 </script>
 
 <style scoped>
@@ -61,7 +84,7 @@ const showCart = () => {
   }
 }
 .cart-info {
-    background-color: rgba(228, 126, 48, 1);
+    background-color: white;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -97,9 +120,23 @@ const showCart = () => {
         align-items: center;
         gap: 1.5rem;
     }
+
+    .summary {
+      .payment-gateways {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .crypto, .stripe {
+          height: 2.5rem;
+          background-color: #E47E30;
+        }
+      }
+    }
 }
 button {
     cursor: pointer;
+    border: none;
 }
 
 @media (max-width: 700px) {
