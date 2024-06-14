@@ -68,7 +68,7 @@ const showCart = () => {
   cursor: pointer;
   
   .cart-shopping {
-    font-size: 1rem;
+    font-size: 18px;
     position: absolute;
     top: 0;
     right: 0;
@@ -76,11 +76,12 @@ const showCart = () => {
 
   .items-count {
     position: absolute;
-    font-size: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
     color: #E47E30;
     display: block;
-    right: -10px;
-    top: -10px;
+    right: -9px;
+    top: -13px;
   }
 
   .cart-shopping {
@@ -88,7 +89,7 @@ const showCart = () => {
   }
 }
 .cart-info {
-    background-color: #fff;
+    background-color: #f7f3f3;
     color: #272727;
     display: flex;
     flex-direction: column;
@@ -146,7 +147,7 @@ const showCart = () => {
       bottom: 0;
       position: absolute;
       width: 100%;
-      background-color: #fff;
+      background-color: #f7f3f3;
 
       h2 {
         color: #E47E30;
