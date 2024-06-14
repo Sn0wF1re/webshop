@@ -10,11 +10,13 @@ import ProductCard from '@/components/ProductCard.vue'
 
 <style scoped>
 .products {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem;
-  margin-top: 2rem;
+  justify-content: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  margin: 2rem;
+  /* margin-top: 2rem; */
 }
 </style>

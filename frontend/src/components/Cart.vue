@@ -59,12 +59,12 @@ const showCart = () => {
 
 <style scoped>
 .cart {
-  background-color: none;
+  background-color: #0a0908;
   border: none;
-  margin: 1rem;
-  position: absolute;
-  top: 0;
-  right: 0;
+  margin: 1rem 0;
+  position: relative;
+  /* top: 0; */
+  /* right: 0; */
   cursor: pointer;
   
   .cart-shopping {
@@ -77,16 +77,22 @@ const showCart = () => {
   .items-count {
     position: absolute;
     font-size: 14px;
-    color: black;
+    color: #E47E30;
     display: block;
     right: -10px;
     top: -10px;
   }
+
+  .cart-shopping {
+    color: #E47E30;
+  }
 }
 .cart-info {
-    background-color: white;
+    background-color: #fff;
+    color: #272727;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     padding: 1rem;
     width: 40%;
     position: fixed;
@@ -100,7 +106,12 @@ const showCart = () => {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        top: 0;
+        position: absolute;
         margin-bottom: 1rem;
+        /* background-color: #E47E30; */
+        color: #E47E30;
+        width: 95%;
 
         span {
             display: block;
@@ -114,22 +125,41 @@ const showCart = () => {
         flex-wrap: wrap;
         align-items: center;
         gap: 1.5rem;
-    }
-    .cart-item-info {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
+        margin-bottom: 1rem;
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: "Cambay", sans-serif;
+
+            button {
+              font-family: "Fredoka", sans-serif;
+              background-color: #E47E30;
+              color: #272727;
+              padding: 0.25rem;
+            }
+        }
     }
 
     .summary {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      background-color: #fff;
+
+      h2 {
+        color: #E47E30;
+      }
+
       .payment-gateways {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-
         .crypto, .stripe {
           height: 2.5rem;
           background-color: #E47E30;
+          font-family: "Fredoka", sans-serif;
         }
       }
     }

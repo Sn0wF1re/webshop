@@ -32,12 +32,13 @@
   padding: 1rem;
   margin: 1rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: none;
   width: 15rem;
 
   button {
     margin-top: 1rem;
     cursor: pointer;
+    font-family: "Cambay", sans-serif;
   }
 }
 </style>

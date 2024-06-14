@@ -2,7 +2,11 @@
     <router-link to="`/products/${product.id}`">
         <div class="product-display">
             <img src="" alt="product.name">
-            <p>product.name</p>
+            <div class="product-details">
+                <p>product.name</p>
+                <p>product.price</p>
+            </div>
+            <button class="add-to-cart">Add to Cart</button>
         </div>
     </router-link>
 </template>
@@ -13,15 +17,35 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     padding: 1rem;
-    border: 16px solid #E47E30;
-    border-radius: 1.5rem;
+    /* border: 16px solid #E47E30; */
+    border-radius: none;
     width: 15rem;
-    background-color: whitesmoke;
     img {
         width: 100%;
-        height: 10rem;
+        height: 15rem;
+        background-color: whitesmoke;
+
+        }
+    img:hover {
+        height: 20rem;
+    }
+
+    .product-details {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    .add-to-cart {
+        cursor: pointer;
+        background-color: #E47E30;
+        color: #272727;
+        border: none;
+        padding: 0.5rem;
+        font-family: "Fredoka", sans-serif;
     }
 }
 </style>
