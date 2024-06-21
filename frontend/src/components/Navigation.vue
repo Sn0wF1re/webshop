@@ -2,7 +2,7 @@
     <div class="navigation">
         <p class="logo">Pixel Morans</p>
         <div class="sub-nav">
-            <p>Home</p>
+            <router-link to="/">Home</router-link>
             <p>Shop</p>
             <p>Blog</p>
         </div>
@@ -38,6 +38,10 @@ import Cart from '@/components/Cart.vue';
         display: flex;
         justify-content: center;
         gap: 2rem;
+        a {
+            color: #e47e30;
+            cursor: pointer;
+        }
     }
 
     .far-right {

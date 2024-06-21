@@ -32,7 +32,11 @@
     background-color: #e47e30;
     padding: 3rem;
     column-gap: 3rem;
-
+    position: relative;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
     h2 {
         color: #0a0908;
         font-family: "Fredoka", sans-serif;

@@ -1,15 +1,26 @@
 <template>
-    <router-link to="`/products/${product.id}`">
+    <router-link :to="{ name: 'product', params: { productId: product.id } }">
         <div class="product-display">
-            <img src="" alt="product.name">
+            <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name">
             <div class="product-details">
-                <p>product.name</p>
-                <p>product.price</p>
+                <p>{{ product.attributes.name }}</p>
+                <p>Kes{{ product.attributes.price }}</p>
             </div>
             <button class="add-to-cart">Add to Cart</button>
         </div>
     </router-link>
 </template>
+
+<script setup>
+
+const props = defineProps({
+    product: Object,
+    required: true
+});
+// log the product object
+console.log(props.product);
+
+</script>
 
 <style scoped>
 .product-display {
@@ -26,10 +37,12 @@
         width: 100%;
         height: 15rem;
         background-color: whitesmoke;
-
         }
+
     img:hover {
-        height: 20rem;
+        height: 16rem;
+        width: auto;
+        transition: 0.5s;
     }
 
     .product-details {
@@ -38,6 +51,11 @@
         justify-content: space-between;
         gap: 1rem;
         margin: 1rem 0;
+
+        p {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1rem;
+        }
     }
     .add-to-cart {
         cursor: pointer;

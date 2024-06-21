@@ -1,10 +1,10 @@
 <template>
-    <div class="product-card">
-      <img src="" alt="product.name" />
+    <div class="product-info-card">
+      <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name" />
         <div class="product-info">
-            <h3>product.name</h3>
-            <p>$ product.price</p>
-            <p>$ product.description</p>
+            <h3>{{ product.attributes.name }}</h3>
+            <p>Kes{{ product.attributes.price }}</p>
+            <p> {{ product.attributes.description }}</p>
             <div class="product-rating">
                 <span>
                     <!-- <i
@@ -21,10 +21,13 @@
 </template>
 
 <script setup>
-
+const props = defineProps({
+    product: Object,
+    required: true
+});
 </script>
 <style scoped>
-.product-card {
+.product-info-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +36,7 @@
   margin: 1rem;
   border: 1px solid #ccc;
   border-radius: none;
-  width: 15rem;
+  height: 100%;
 
   button {
     margin-top: 1rem;

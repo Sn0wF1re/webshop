@@ -102,6 +102,7 @@ const showCart = () => {
     right: 0;
     bottom: 0;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 
     .cart-header {
         display: flex;
