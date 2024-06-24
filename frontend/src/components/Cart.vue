@@ -1,6 +1,7 @@
 <template>
     <button class="cart" @click="showCart">
-      <span class="items-count">1</span>
+      <span v-if="!cartStore.cartCount" class="items-count">0</span>
+      <span v-else class="items-count">{{ cartStore.cartCount }}</span>
       <font-awesome-icon icon="cart-shopping" class="cart-shopping" />
     </button>
     <div class="cart-info" v-if="showCartInfo">
@@ -30,11 +31,17 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useCartStore } from '@/stores/cartStore';
 
 const showCartInfo = ref(false);
 const showCart = () => {
   showCartInfo.value = !showCartInfo.value;
 }
+
+const cartStore = useCartStore();
+
+// Handle number for amount of cart items
+
 
 // async handlePayment(gateway) {
 //   try {
