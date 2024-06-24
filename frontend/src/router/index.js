@@ -14,7 +14,7 @@ const router = createRouter({
       path: '/products/:productId',
       name: 'product',
       component: Product,
-      props: true
+      props: route => ({ productId: route.params.productId })
     },
     // {
     //   path: '/cart',
