@@ -1,18 +1,12 @@
 <template>
   <main>
     <Navigation />
-    <router-link to="/">
-    </router-link>
-    <router-view />
-    <!-- <Cart /> -->
-    <!-- <Products /> -->
-
+    <router-view></router-view>
     <Footer />
   </main>
 </template>
 
 <script setup>
-// import Products from '@/views/Products.vue';
 import Navigation from '@/components/Navigation.vue';
 import Footer from '@/components/Footer.vue';
 </script>
