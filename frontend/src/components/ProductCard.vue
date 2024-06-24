@@ -12,13 +12,18 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+
 
 const props = defineProps({
     product: Object,
     required: true
 });
 // log the product object
-console.log(props.product);
+
+onMounted(() => {
+    console.log(props.product);
+});
 
 </script>
 
