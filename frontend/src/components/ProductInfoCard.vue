@@ -16,7 +16,7 @@
               </span>
             </div>
             <div class="buttons">
-              <button>Add to Cart</button>
+              <button @click="addToCart">Add to Cart</button>
               <button>View Cart</button>
             </div>
         </div>
@@ -24,11 +24,19 @@
 </template>
 
 <script setup>
+import { useCartStore } from '@/stores/cartStore';
+
 const props = defineProps({
     product: Object,
     required: true
 });
 console.log(props.product);
+
+const cartStore = useCartStore();
+const addToCart = () => {
+  cartStore.addToCart(props.product);
+  console.log(cartStore.cartCount);
+};
 </script>
 <style scoped>
 .product-info-card {
