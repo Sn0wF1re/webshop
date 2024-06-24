@@ -3,20 +3,23 @@
       <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name" />
         <div class="product-info">
             <h3>{{ product.attributes.name }}</h3>
-            <p>Kes{{ product.attributes.price }}</p>
             <p> {{ product.attributes.description }}</p>
+            <p>Kes{{ product.attributes.price }}</p>
             <div class="product-rating">
-                <span>
-                    <!-- <i
-                        v-for="i in 5"
-                        :key="i"
-                        :class="product.rating >= i ? 'fa fa-star' : 'fa fa-star-o'"
-                        ></i> -->
-                        rating
-                </span>
+              <span>
+                <!-- <i
+                v-for="i in 5"
+                :key="i"
+                :class="product.rating >= i ? 'fa fa-star' : 'fa fa-star-o'"
+                ></i> -->
+                rating
+              </span>
+            </div>
+            <div class="buttons">
+              <button>Add to Cart</button>
+              <button>View Cart</button>
             </div>
         </div>
-        <button>Add to Cart</button>
     </div>
 </template>
 
@@ -25,23 +28,46 @@ const props = defineProps({
     product: Object,
     required: true
 });
+console.log(props.product);
 </script>
 <style scoped>
 .product-info-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 3rem;
   padding: 1rem;
   margin: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #e6a97a;
   border-radius: none;
   height: 100%;
 
-  button {
-    margin-top: 1rem;
-    cursor: pointer;
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1rem;
     font-family: "Cambay", sans-serif;
+
+    h3 {
+      color: #E47E30;
+      font-size: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #E47E30;
+    color: #272727;
+    border: none;
+    padding: 0.5rem;
+    font-family: "Fredoka", sans-serif;
+    width: 6rem;
   }
 }
 </style>
