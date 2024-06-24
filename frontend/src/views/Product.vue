@@ -1,8 +1,14 @@
 <template>
     <main>
         <div v-if="loading">Loading</div>
-        <ProductInfoCard :product="product" />
-        <router-view />
+        
+        <div v-else-if="product">
+            <ProductInfoCard :product="product" />
+        </div>
+
+        <div v-else>
+            Product not found or loading failed
+        </div>
     </main>
     <!-- <div class="related-products" v-if="relatedProducts.length">
         <h2>Related Products</h2>
@@ -15,9 +21,8 @@
 <script setup>
 import ProductInfoCard from '@/components/ProductInfoCard.vue';
 // import ProductCard from '@/components/ProductCard.vue';
-import { useRoute } from 'vue-router';
 import { useProductStore } from '@/stores/productStore'
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 const productStore = useProductStore();
 // const route = useRoute();
@@ -25,13 +30,26 @@ const productStore = useProductStore();
 const props = defineProps({
     productId: String,
 });
-const product = ref(null);
+
+console.log(props.productId);
 // const relatedProducts = ref([]);
 const loading = ref(true);
 
 onMounted(async () => {
-  await productStore.fetchProduct(productId);
-  product.value = productStore.product;
+  await productStore.fetchProduct(props.productId);
   loading.value = false;
 });
+
+const product = computed(() => productStore.product);
+console.log(product.value);
 </script>
+
+<style scoped>
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 100vh;
+}
+</style>
