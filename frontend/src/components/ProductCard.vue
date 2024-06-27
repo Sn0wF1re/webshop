@@ -1,19 +1,19 @@
 <template>
-    <router-link :to="{ name: 'product', params: { productId: product.id } }">
-        <div class="product-display">
+    <div class="product-display">
+        <router-link :to="{ name: 'product', params: { productId: product.id } }">
             <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name">
             <div class="product-details">
                 <p>{{ product.attributes.name }}</p>
                 <p>Kes{{ product.attributes.price }}</p>
             </div>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-    </router-link>
+        </router-link>
+        <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+    </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
-
+import { useCartStore } from '@/stores/cartStore';
 
 const props = defineProps({
     product: Object,
@@ -24,6 +24,12 @@ const props = defineProps({
 onMounted(() => {
     console.log(props.product);
 });
+
+const cartStore = useCartStore();
+const addToCart = () => {
+  cartStore.addToCart(props.product);
+  console.log(cartStore.cartCount);
+};
 
 </script>
 

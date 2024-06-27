@@ -12,7 +12,7 @@
                 <font-awesome-icon icon="fa-soli fa-user" />
                 Account
             </button>
-            <Cart class="cart" />
+            <Cart />
         </div>
     </div>
 

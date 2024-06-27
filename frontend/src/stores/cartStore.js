@@ -5,6 +5,7 @@ export const useCartStore = defineStore('cartStore', () => {
     const cartItems = ref([]);
     const cartCount = ref(0);
 
+
     const addToCart = (product) => {
         const existingProduct = cartItems.value.find(item => item.id === product.id);
 
@@ -15,6 +16,7 @@ export const useCartStore = defineStore('cartStore', () => {
             cartCount.value++;
         }
         console.log(existingProduct);
+        console.log(cartItems.value);
     }
 
     const removeFromCart = (product) => {
@@ -32,7 +34,8 @@ export const useCartStore = defineStore('cartStore', () => {
 
     return {
         cartItems,
+        cartCount,
         addToCart,
-        removeFromCart
+        removeFromCart,
     }
 });

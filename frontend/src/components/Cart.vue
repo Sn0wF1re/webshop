@@ -9,28 +9,33 @@
         <h3>Shopping Cart</h3>
         <span @click="showCart">close</span>
       </div>
-      <div class="cart-item" v-for="i in 5">
-          <img src="" alt="product.name" />
-          <div class="cart-item-info">
-              <h3>product.name</h3>
-              <p>$ product.price</p>
-              <p>Qty: 1</p>
-              <button>Remove</button>
-          </div>
+      <div v-if="!cartStore.cartCount" class="empty-cart">
+        <p>No items in cart</p>
       </div>
-      <div class="summary">
-          <h2>Summary</h2>
-          <p>Total: $0.00</p>
-          <div class="payment-gateways">
-            <button class="crypto" @click="handlePayment('crypto')">Pay with Crypto</button>
-            <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
-          </div>
+      <div v-else class="cart-summary">
+        <div class="cart-item-info" v-for="product in products">
+            <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.name" />
+            <h3>{{ product.attributes.name }}</h3>
+            <p>Kes{{ product.attributes.price }}</p>
+            <button @click="cartStore.removeFromCart(product)">-</button>
+            <p>Qty: {{ product.quantity }}</p>
+            <button @click="cartStore.addToCart(product)">+</button>
+            <button @click="cartStore.removeFromCart(product)">Remove</button>
+        </div>
+        <div class="summary">
+            <h2>Summary</h2>
+            <p>Total: Kes{{ total }}</p>
+            <div class="payment-gateways">
+              <button class="crypto" @click="handlePayment('crypto')">Pay with Crypto</button>
+              <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
+            </div>
+        </div>
       </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 
 const showCartInfo = ref(false);
@@ -39,6 +44,13 @@ const showCart = () => {
 }
 
 const cartStore = useCartStore();
+const products = cartStore.cartItems;
+const total = computed(() => {
+  return products.reduce((acc, product) => {
+    return acc + (product.attributes.price * product.quantity);
+  }, 0);
+});
+
 
 // Handle number for amount of cart items
 
@@ -100,11 +112,10 @@ const cartStore = useCartStore();
     color: #272727;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     padding: 1rem;
     width: 40%;
     position: fixed;
-    overflow: auto;
     top: 0;
     right: 0;
     bottom: 0;
@@ -129,12 +140,26 @@ const cartStore = useCartStore();
         }
     }
 
-    .cart-item {
+    .empty-cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .cart-summary {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: flex-start;
         gap: 1.5rem;
         margin-bottom: 1rem;
+        margin-top: 2rem;
+
+        img {
+            width: 3rem;
+            height: auto;
+            object-fit: cover;
+        }
 
         .cart-item-info {
             display: flex;
@@ -143,11 +168,19 @@ const cartStore = useCartStore();
             font-family: "Cambay", sans-serif;
 
             button {
-              font-family: "Fredoka", sans-serif;
-              background-color: #E47E30;
+              font-family: "Cambay", sans-serif;
+              font-size: 1.25rem;
+              /* background-color: #E47E30; */
+              margin: 0.25rem solid black;
               color: #272727;
-              padding: 0.25rem;
+              /* padding: 0 0.25rem; */
             }
+        }
+
+        .summary {
+          h2, p {
+            margin-bottom: 0.5rem;
+          }
         }
     }
 
