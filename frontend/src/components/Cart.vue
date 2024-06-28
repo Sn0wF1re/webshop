@@ -13,14 +13,14 @@
         <p>No items in cart</p>
       </div>
       <div v-else class="cart-summary">
-        <div class="cart-item-info" v-for="product in products">
+        <div class="cart-item-info" v-for="product in products" :key="product.id">
             <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.name" />
             <h3>{{ product.attributes.name }}</h3>
             <p>Kes{{ product.attributes.price }}</p>
             <button @click="cartStore.removeFromCart(product)">-</button>
             <p>Qty: {{ product.quantity }}</p>
             <button @click="cartStore.addToCart(product)">+</button>
-            <button @click="cartStore.removeFromCart(product)">Remove</button>
+            <!-- <button @click="cartStore.removeFromCart(product)">Remove</button> -->
         </div>
         <div class="summary">
             <h2>Summary</h2>
