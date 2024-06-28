@@ -45,15 +45,8 @@ const showCart = () => {
 
 const cartStore = useCartStore();
 const products = cartStore.cartItems;
-const total = computed(() => {
-  return products.reduce((acc, product) => {
-    return acc + (product.attributes.price * product.quantity);
-  }, 0);
-});
 
-
-// Handle number for amount of cart items
-
+const total = computed(() => cartStore.cartTotal);
 
 // async handlePayment(gateway) {
 //   try {
