@@ -15,6 +15,7 @@ export const useCartStore = defineStore('cartStore', () => {
 
         if (existingProduct) {
             existingProduct.quantity++;
+            cartCount.value++;
         } else {
             cartItems.value.push({ ...product, quantity: 1 });
             cartCount.value++;
