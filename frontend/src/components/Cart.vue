@@ -17,10 +17,11 @@
             <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.name" />
             <h3>{{ product.attributes.name }}</h3>
             <p>Kes{{ product.attributes.price }}</p>
-            <button @click="cartStore.removeFromCart(product)">-</button>
-            <p>Qty: {{ product.quantity }}</p>
-            <button @click="cartStore.addToCart(product)">+</button>
-            <!-- <button @click="cartStore.removeFromCart(product)">Remove</button> -->
+            <!-- <button @click="cartStore.removeFromCart(product)">-</button> -->
+            <label :for="'update-quantity-' + product.quantity" >Quantity:</label>
+            <input type="number" v-model.number="product.quantity" @change="cartStore.updateQuantity(product, product.quantity)" placeholder="e.g 5" min="1" :id="'update-quantity-' + product.id"></input>
+            <!-- <button @click="cartStore.increaseQuantity(product)">+</button> -->
+            <button @click="cartStore.removeFromCart(product)">Remove</button>
         </div>
         <div class="summary">
             <h2>Summary</h2>
@@ -159,6 +160,13 @@ const total = computed(() => cartStore.cartTotal);
             align-items: center;
             gap: 1.5rem;
             font-family: "Cambay", sans-serif;
+
+            input {
+              width: 3rem;
+              height: 1rem;
+              padding: 0.25rem;
+              font-family: "Cambay", sans-serif;
+            }
 
             button {
               font-family: "Cambay", sans-serif;
