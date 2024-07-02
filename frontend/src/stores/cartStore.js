@@ -14,8 +14,7 @@ export const useCartStore = defineStore('cartStore', () => {
         const existingProduct = cartItems.value.find(item => item.id === product.id);
 
         if (existingProduct) {
-            existingProduct.quantity++;
-            cartCount.value++;
+            console.log('existingProduct', existingProduct);
         } else {
             cartItems.value.push({ ...product, quantity: 1 });
             cartCount.value++;
@@ -24,16 +23,25 @@ export const useCartStore = defineStore('cartStore', () => {
         console.log(cartItems.value);
     }
 
+    const updateQuantity = (product, newQuantity) => {
+        const existingProduct = cartItems.value.find(item => item.id === product.id);
+
+        if (newQuantity < 1) {
+            newQuantity = 1;
+        }
+
+        if (existingProduct) {
+            existingProduct.quantity = newQuantity;
+            cartCount.value = cartItems.value.reduce((acc, item) => acc + item.quantity, 0);
+        }
+    }
+
     const removeFromCart = (product) => {
         const existingProduct = cartItems.value.find(item => item.id === product.id);
 
         if (existingProduct) {
-            if (existingProduct.quantity === 1) {
-                cartItems.value = cartItems.value.filter(item => item.id !== product.id);
-            } else {
-                existingProduct.quantity--;
-            }
-            cartCount.value--;
+            cartCount.value -= existingProduct.quantity;
+            cartItems.value = cartItems.value.filter(item => item.id !== product.id);
         }
     }
 
@@ -41,6 +49,7 @@ export const useCartStore = defineStore('cartStore', () => {
         cartItems,
         cartCount,
         cartTotal,
+        updateQuantity,
         addToCart,
         removeFromCart,
     }
