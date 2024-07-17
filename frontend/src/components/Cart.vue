@@ -27,8 +27,9 @@
             <h2>Summary</h2>
             <p>Total: Kes{{ total }}</p>
             <div class="payment-gateways">
-              <button class="crypto" @click="handlePayment('crypto')">Pay with Crypto</button>
+              <button class="crypto" @click="">Pay with Crypto</button>
               <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
+              <HelioCheckout />
             </div>
         </div>
       </div>
@@ -36,18 +37,21 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, watch, onBeforeMount, computed } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
+import HelioCheckout from '@/components/HelioCheckout.vue';
 
-const showCartInfo = ref(false);
-const showCart = () => {
-  showCartInfo.value = !showCartInfo.value;
-}
 
 const cartStore = useCartStore();
 const products = cartStore.cartItems;
 
 const total = computed(() => cartStore.cartTotal);
+let isLoaded = ref(false);
+
+const showCartInfo = ref(false);
+const showCart = () => {
+  showCartInfo.value = !showCartInfo.value;
+}
 
 // async handlePayment(gateway) {
 //   try {
@@ -89,7 +93,7 @@ const total = computed(() => cartStore.cartTotal);
 
   .items-count {
     position: absolute;
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: #E47E30;
     display: block;
@@ -198,11 +202,17 @@ const total = computed(() => cartStore.cartTotal);
       .payment-gateways {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
         .crypto, .stripe {
           height: 2.5rem;
           background-color: #E47E30;
-          font-family: "Fredoka", sans-serif;
+          font-family: "Inter", sans-serif;
+          font-size: 14px;
+          text-transform: uppercase;
+          font-weight: bold;
+          width: 100%;
         }
       }
     }

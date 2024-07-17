@@ -30,7 +30,7 @@ import Cart from '@/components/Cart.vue';
     background-color: #0a0908;
     color: #e47e30;
     padding: 1rem 3rem;
-    font-family: "Fredoka", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
 
     .sub-nav {
@@ -54,7 +54,7 @@ import Cart from '@/components/Cart.vue';
             background-color: #0a0908;
             cursor: pointer;
             padding: 1rem;
-            font-family: "Fredoka", sans-serif;
+            font-family: "Inter", sans-serif;
             font-weight: 600;
             font-size: 1rem;
         }

@@ -74,7 +74,7 @@ const addToCart = () => {
     color: #272727;
     border: none;
     padding: 0.5rem;
-    font-family: "Fredoka", sans-serif;
+    font-family: "Inter", sans-serif;
     width: 6rem;
   }
 }

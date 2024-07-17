@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import axios from 'axios';
 
 export const useCartStore = defineStore('cartStore', () => {
     const cartItems = ref([]);
