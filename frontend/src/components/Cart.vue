@@ -16,7 +16,7 @@
         <div class="cart-item-info" v-for="product in products" :key="product.id">
             <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.name" />
             <h3>{{ product.attributes.name }}</h3>
-            <p>Kes{{ product.attributes.price }}</p>
+            <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             <!-- <button @click="cartStore.removeFromCart(product)">-</button> -->
             <label :for="'update-quantity-' + product.quantity" >Quantity:</label>
             <input type="number" v-model.number="product.quantity" @change="cartStore.updateQuantity(product, product.quantity)" placeholder="e.g 5" min="1" :id="'update-quantity-' + product.id"></input>
@@ -25,7 +25,7 @@
         </div>
         <div class="summary">
             <h2>Summary</h2>
-            <p>Total: Kes{{ total }}</p>
+            <p>Total: kes {{ totalKes }} / usd {{ totalUsd }}</p>
             <div class="payment-gateways">
               <button class="crypto" @click="">Pay with Crypto</button>
               <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
@@ -45,7 +45,8 @@ import HelioCheckout from '@/components/HelioCheckout.vue';
 const cartStore = useCartStore();
 const products = cartStore.cartItems;
 
-const total = computed(() => cartStore.cartTotal);
+const totalKes = computed(() => cartStore.cartTotal('kes'));
+const totalUsd = computed(() => cartStore.cartTotal('usd'));
 let isLoaded = ref(false);
 
 const showCartInfo = ref(false);
@@ -112,7 +113,7 @@ const showCart = () => {
     flex-direction: column;
     /* justify-content: space-evenly; */
     padding: 1rem;
-    width: 40%;
+    width: 45%;
     position: fixed;
     top: 0;
     right: 0;
