@@ -24,32 +24,17 @@
         "images"
       ]
     },
-    "price_kes": {
+    "price": {
       "type": "decimal",
+      "required": true
+    },
+    "category": {
+      "type": "string",
       "required": true
     },
     "description": {
       "type": "string",
       "required": true
-    },
-    "price_usd": {
-      "type": "integer",
-      "required": true
-    },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
-    "product_variation": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product-variation.product-variation"
-    },
-    "discount": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::discount.discount"
     }
   }
 }
