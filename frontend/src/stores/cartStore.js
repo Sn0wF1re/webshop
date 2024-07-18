@@ -6,9 +6,13 @@ export const useCartStore = defineStore('cartStore', () => {
     const cartItems = ref([]);
     const cartCount = ref(0);
 
-    const cartTotal = computed(() => {
-        return cartItems.value.reduce((acc, item) => acc + (item.attributes.price * item.quantity), 0).toFixed(2);
-    });
+    const cartTotal = (currency) => {
+        if (currency == 'usd') {
+            return cartItems.value.reduce((acc, item) => acc + (item.attributes.price_usd * item.quantity), 0).toFixed(2);
+        } else if (currency == 'kes') {
+            return cartItems.value.reduce((acc, item) => acc + (item.attributes.price_kes * item.quantity), 0).toFixed(2);
+        }
+    };
 
 
     const addToCart = (product) => {

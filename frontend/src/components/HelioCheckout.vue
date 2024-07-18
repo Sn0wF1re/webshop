@@ -26,7 +26,7 @@ onMounted(() => {
 });
 
 // Watch for changes in cartTotal or scriptLoaded and re-initialize Helio checkout
-watch([() => cartStore.cartTotal, scriptLoaded], () => {
+watch([() => cartStore.cartTotal('usd'), scriptLoaded], () => {
     if (scriptLoaded.value) {
         initHelioCheckout();
     }
@@ -42,8 +42,8 @@ function initHelioCheckout() {
                 customTexts: {
                     mainButtonTitle: "Pay with Crypto/Card"
                 },
-                primaryPaymentMethod: "fiat",
-                amount: cartStore.cartTotal, // Use the cartTotal from cartStore
+                primaryPaymentMethod: "crypto",
+                amount: cartStore.cartTotal('usd'), // Use the cartTotal from cartStore
                 display: "button",
                 onSuccess: event => console.log(event),
                 onError: event => console.log(event),
