@@ -2,10 +2,9 @@
     <div class="product-info-card">
       <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name" />
         <div class="product-info">
-            <p>category: {{ product.attributes.category }}</p>
             <h3>{{ product.attributes.name }}</h3>
             <p> {{ product.attributes.description }}</p>
-            <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
+            <p>Kes{{ product.attributes.price }}</p>
             <div class="product-rating">
               <span>
                 <!-- <i
@@ -63,10 +62,6 @@ const addToCart = () => {
       font-size: 1.5rem;
     }
 
-    :nth-child(4) {
-      font-weight: bold;
-    }
-
     .buttons {
       display: flex;
       justify-content: space-between;
@@ -80,7 +75,6 @@ const addToCart = () => {
     border: none;
     padding: 0.5rem;
     font-family: "Inter", sans-serif;
-    font-weight: bold;
     width: 6rem;
   }
 }
