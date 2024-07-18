@@ -4,7 +4,7 @@
             <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name">
             <div class="product-details">
                 <p>{{ product.attributes.name }}</p>
-                <p>Kes{{ product.attributes.price }}</p>
+                <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             </div>
         </router-link>
         <button class="add-to-cart" @click="addToCart">Add to Cart</button>
@@ -66,6 +66,7 @@ const addToCart = () => {
         p {
             font-family: "Inter", sans-serif;
             font-size: 1rem;
+            font-weight: bold;
         }
     }
     .add-to-cart {
@@ -75,6 +76,7 @@ const addToCart = () => {
         border: none;
         padding: 0.5rem;
         font-family: "Inter", sans-serif;
+        font-weight: bold;
     }
 }
 </style>
