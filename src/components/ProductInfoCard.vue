@@ -1,9 +1,9 @@
 <template>
     <div class="product-info-card">
-      <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name" />
+      <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id" />
         <div class="product-info">
-            <p>category: {{ product.attributes.category }}</p>
-            <h3>{{ product.attributes.name }}</h3>
+            <p>category: {{ product.attributes.category.data.attributes.name }}</p>
+            <h3>{{ product.attributes.mask_id }}</h3>
             <p> {{ product.attributes.description }}</p>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             <div class="product-rating">

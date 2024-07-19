@@ -9,9 +9,9 @@ export const useProductStore = defineStore('productStore', () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:1337/api/products?populate[image][fields][0]=formats&pagination[pageSize]=10&pagination[page]=1&publicationState=live&locale[0]=en', {
+            const response = await axios.get('http://localhost:1337/api/products?populate[cover_photo][fields][0]=formats&pagination[pageSize]=10&pagination[page]=1&publicationState=live&locale[0]=en', {
                 headers: {
-                    'Authorization': 'Bearer 6ce5448e2f741e9e1d201222f8e69929efdf2c5909698cc2d08edc8b226185f9ab347d26ca1c5d2bbc566e09de4640e49c68cfdde1dd2b5d402102ca2bd6e420797b371d84e43e8e0d295314cd72d2900832247319383f56238a1ec635ea0b81751b49d6b046a0e29d906572426dab88dbc0a0e7d3408a4ecd7d991d546ae11e'
+                    'Authorization': 'Bearer 1e6521e8f6300e448d0961e515aa83d8333be1f5625e09b6cd950b13543e5b68f85c650b2687d1a3b3e4558286649c4ccee841884d45409cb1f0fdb2ea4e112cf61d03f2d47bed21544a5444784ad094ff459f37ba65f19aa8b615d73b93585fb05638fa640bedb7b54dca00053ea4b7762dc43b0c2616577f4d02e0cdccfad0'
                 }
             });
 
@@ -24,9 +24,9 @@ export const useProductStore = defineStore('productStore', () => {
 
     const fetchProduct = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:1337/api/products/${id}?populate[image][fields][0]=formats&pagination[pageSize]=10&pagination[page]=1&publicationState=live&locale[0]=en`, {
+            const response = await axios.get(`http://localhost:1337/api/products/1?populate[cover_photo][fields][0]=formats&populate[category][fields][0]=name&populate[product_variation][fields][0]=color&pagination[pageSize]=10&pagination[page]=1&publicationState=live&locale[0]=en`, {
                 headers: {
-                    'Authorization': 'Bearer 6ce5448e2f741e9e1d201222f8e69929efdf2c5909698cc2d08edc8b226185f9ab347d26ca1c5d2bbc566e09de4640e49c68cfdde1dd2b5d402102ca2bd6e420797b371d84e43e8e0d295314cd72d2900832247319383f56238a1ec635ea0b81751b49d6b046a0e29d906572426dab88dbc0a0e7d3408a4ecd7d991d546ae11e'
+                    'Authorization': 'Bearer 1e6521e8f6300e448d0961e515aa83d8333be1f5625e09b6cd950b13543e5b68f85c650b2687d1a3b3e4558286649c4ccee841884d45409cb1f0fdb2ea4e112cf61d03f2d47bed21544a5444784ad094ff459f37ba65f19aa8b615d73b93585fb05638fa640bedb7b54dca00053ea4b7762dc43b0c2616577f4d02e0cdccfad0'
                 }
             });
 

@@ -14,8 +14,8 @@
       </div>
       <div v-else class="cart-summary">
         <div class="cart-item-info" v-for="product in products" :key="product.id">
-            <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.name" />
-            <h3>{{ product.attributes.name }}</h3>
+            <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id" />
+            <h3>{{ product.attributes.mask_id }}</h3>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             <!-- <button @click="cartStore.removeFromCart(product)">-</button> -->
             <label :for="'update-quantity-' + product.quantity" >Quantity:</label>

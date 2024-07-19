@@ -1,9 +1,9 @@
 <template>
     <div class="product-display">
         <router-link :to="{ name: 'product', params: { productId: product.id } }">
-            <img :src="product.attributes.image.data.attributes.formats.small.url" :alt="product.attributes.name">
+            <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id">
             <div class="product-details">
-                <p>{{ product.attributes.name }}</p>
+                <p>{{ product.attributes.mask_id }}</p>
                 <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             </div>
         </router-link>

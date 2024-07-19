@@ -11,6 +11,10 @@ const router = createRouter({
       component: Products
     },
     {
+      path: '/products',
+      redirect: '/'
+    },
+    {
       path: '/products/:productId',
       name: 'product',
       component: Product,
