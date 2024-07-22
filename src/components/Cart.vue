@@ -1,5 +1,10 @@
 <template>
-    <button class="cart" @click="showCart">
+  <router-link to="/cart" class="cart">
+    <span v-if="!cartStore.cartCount" class="items-count">0</span>
+    <span v-else class="items-count">{{ cartStore.cartCount }}</span>
+    <font-awesome-icon icon="cart-shopping" class="cart-shopping" />
+  </router-link>
+    <!-- <button class="cart" @click="showCart">
       <span v-if="!cartStore.cartCount" class="items-count">0</span>
       <span v-else class="items-count">{{ cartStore.cartCount }}</span>
       <font-awesome-icon icon="cart-shopping" class="cart-shopping" />
@@ -17,10 +22,10 @@
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id" />
             <h3>{{ product.attributes.mask_id }}</h3>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
-            <!-- <button @click="cartStore.removeFromCart(product)">-</button> -->
-            <label :for="'update-quantity-' + product.quantity" >Quantity:</label>
-            <input type="number" v-model.number="product.quantity" @change="cartStore.updateQuantity(product, product.quantity)" placeholder="e.g 5" min="1" :id="'update-quantity-' + product.id"></input>
-            <!-- <button @click="cartStore.increaseQuantity(product)">+</button> -->
+            
+            <label :for="'update-quantity-' + product.id" >Quantity:</label>
+            <input type="number" v-model.number="product.quantity" @change="updateQuantityInStore(product)" placeholder="e.g 5" min="1" :id="'update-quantity-' + product.id"></input>
+            
             <button @click="cartStore.removeFromCart(product)">Remove</button>
         </div>
         <div class="summary">
@@ -33,7 +38,7 @@
             </div>
         </div>
       </div>
-    </div>
+    </div> -->
 </template>
 
 <script setup>
@@ -52,8 +57,11 @@ let isLoaded = ref(false);
 const showCartInfo = ref(false);
 const showCart = () => {
   showCartInfo.value = !showCartInfo.value;
-}
+};
 
+function updateQuantityInStore(item) {
+  cartStore.updateQuantity(item, item.quantity);
+}
 // async handlePayment(gateway) {
 //   try {
 //     const checkoutData = await cartStore.checkout(gateway);
