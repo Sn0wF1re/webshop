@@ -4,8 +4,15 @@
         <div class="product-info">
             <p>category: {{ product.attributes.category.data.attributes.name }}</p>
             <h3>{{ product.attributes.mask_id }}</h3>
-            <p> {{ product.attributes.description }}</p>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
+            <p> {{ product.attributes.description }}</p>
+            <div class="quantity">
+              <label :for="'update-quantity-' + product.id">Quantity:</label>
+              <input type="number" v-model.number="quantity"
+                @change="updateQuantityInStore(quantity)" placeholder="e.g 5" min="1"
+                :id="'update-quantity-' + product.id">
+              </input>
+            </div>
             <div class="product-rating">
               <span>
                 <!-- <i
@@ -25,6 +32,7 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
 
 const props = defineProps({
@@ -38,7 +46,23 @@ const addToCart = () => {
   cartStore.addToCart(props.product);
   console.log(cartStore.cartCount);
 };
+
+const quantity = props.product.quantity || 0;
+
+// const updateQuantity = () => {
+//   cartStore.updateQuantity(props.product, quantity.value);
+// };
+
+function updateQuantityInStore(newQuantity) {
+  cartStore.updateQuantity(props.product, newQuantity);
+}
+// watch(() => quantity, (newVal, oldVal) => {
+//   if (newVal !== oldVal) {
+//     updateQuantity();
+//   }
+// });
 </script>
+
 <style scoped>
 .product-info-card {
   display: flex;
@@ -65,6 +89,23 @@ const addToCart = () => {
 
     :nth-child(4) {
       font-weight: bold;
+    }
+
+    .quantity {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      label {
+        font-weight: bold;
+      }
+
+      input {
+        padding: 0.5rem;
+        border: 1px solid #e6a97a;
+        font-family: "Inter", sans-serif;
+        outline: none;
+      }
     }
 
     .buttons {
