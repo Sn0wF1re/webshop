@@ -3,13 +3,13 @@
         <router-link :to="{ name: 'product', params: { productId: product.id } }">
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id">
         </router-link>
-            <div class="product-details">
-                <div class="product-info">
-                    <p>{{ product.attributes.mask_id }}</p>
-                    <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
-                </div>
-                <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+        <div class="product-details">
+            <div class="product-info">
+                <p>{{ product.attributes.mask_id }}</p>
+                <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             </div>
+            <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+        </div>
     </div>
 </template>
 
