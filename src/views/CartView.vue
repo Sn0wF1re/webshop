@@ -3,7 +3,11 @@
         <p>No items in cart</p>
     </div>
     <div v-else class="cart-summary">
-        <h2>Your Cart</h2>
+        <div class="heading">
+            <h2>Your Cart</h2>
+            <p>Check your items before proceeding to pay</p>
+        </div>
+
         <div class="cart-item-info" v-for="product in products" :key="product.id">
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url"
                 :alt="product.attributes.mask_id" />
@@ -76,6 +80,14 @@ watch(() => products, (newVal, oldVal) => {
     min-height: 100vh;
     /* overflow-x: scroll; */
 
+    .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
     img {
         width: 3rem;
         height: auto;
@@ -117,6 +129,10 @@ watch(() => products, (newVal, oldVal) => {
             padding: 8px;
             color: #000;
             /* padding: 0 0.25rem; */
+        }
+
+        .remove:hover {
+            background-color: #CF5014;
         }
     }
 
@@ -162,13 +178,17 @@ watch(() => products, (newVal, oldVal) => {
 
         .crypto,
         .stripe {
-            height: 2.5rem;
+            height: 2.75rem;
             background-color: #E47E30;
             font-family: "Inter", sans-serif;
             font-size: 14px;
             text-transform: uppercase;
             font-weight: bold;
-            width: 240.062px;
+            width: 240.05px;
+        }
+
+        .crypto:hover, .stripe:hover {
+            background-color: #CF5014;
         }
     }
 }
