@@ -1,6 +1,6 @@
 <template>
     <div class="product-display">
-        <router-link :to="{ name: 'product', params: { productId: product.id } }">
+        <router-link :to="{ name: 'product', params: { productId: product.id, slug: product.attributes.slug } }">
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id">
         </router-link>
         <div class="product-details">
