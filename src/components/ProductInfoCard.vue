@@ -25,7 +25,9 @@
             </div>
             <div class="buttons">
               <button @click="addToCart">Add to Cart</button>
-              <button>View Cart</button>
+              <button>
+                <router-link to="/cart">View Cart</router-link>
+              </button>
             </div>
         </div>
     </div>
