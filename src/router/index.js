@@ -16,10 +16,10 @@ const router = createRouter({
       redirect: '/'
     },
     {
-      path: '/products/:productId',
+      path: '/products/:productId/:slug',
       name: 'product',
       component: Product,
-      props: route => ({ productId: route.params.productId })
+      props: route => ({ productId: route.params.productId, slug: route.params.slug })
     },
     {
       path: '/cart',
