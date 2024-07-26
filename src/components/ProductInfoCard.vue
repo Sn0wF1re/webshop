@@ -6,6 +6,28 @@
             <h3>{{ product.attributes.mask_id }}</h3>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             <p> {{ product.attributes.description }}</p>
+
+            <div class="variations">
+              <label for="size">Size:</label>
+              <select name="size" id="size" v-model="selectedSize">
+                <option 
+                v-for="size in availableSizes" 
+                :value="size"
+                >
+                {{  size }}
+                </option>
+              </select>
+              <label for="color">Color:</label>
+              <select name="color" id="color" v-model="selectedColor">
+                <option 
+                v-for="color in availableColors" 
+                :value="color"
+                >
+                {{  color }}
+                </option>
+              </select>
+            </div>
+
             <div class="quantity">
               <label :for="'update-quantity-' + product.id">Quantity:</label>
               <input type="number" v-model.number="quantity"
@@ -50,6 +72,11 @@ const addToCart = () => {
 };
 
 const quantity = props.product.quantity || 0;
+const selectedSize = ref('');
+const selectedColor = ref('');
+const availableSizes = new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.size.data.attributes.type));
+const availableColors = new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.color.data.attributes.name));
+
 
 // const updateQuantity = () => {
 //   cartStore.updateQuantity(props.product, quantity.value);
