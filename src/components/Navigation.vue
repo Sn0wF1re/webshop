@@ -3,7 +3,6 @@
         <p class="logo">Pixel Morans</p>
         <div class="sub-nav">
             <router-link to="/">Home</router-link>
-            <!-- <router-link to="/cart">Cart</router-link> -->
             <p>Shop</p>
             <p>Blog</p>
         </div>
