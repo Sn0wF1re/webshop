@@ -8,7 +8,7 @@
             <p> {{ product.attributes.description }}</p>
 
             <div class="variations">
-              <label for="size">Size:</label>
+              <label for="size">Size: </label>
               <select name="size" id="size" v-model="selectedSize">
                 <option 
                 v-for="size in availableSizes" 
@@ -17,7 +17,8 @@
                 {{  size }}
                 </option>
               </select>
-              <label for="color">Color:</label>
+
+              <label for="color">Color: </label>
               <select name="color" id="color" v-model="selectedColor">
                 <option 
                 v-for="color in availableColors" 
@@ -30,8 +31,8 @@
 
             <div class="quantity">
               <label :for="'update-quantity-' + product.id">Quantity:</label>
-              <input type="number" v-model.number="quantity"
-                @change="updateQuantityInStore(quantity)" placeholder="e.g 5" min="1"
+              <input type="number" v-model.number="itemQuantity"
+                placeholder="e.g 5" min="1"
                 :id="'update-quantity-' + product.id">
               </input>
             </div>
@@ -58,6 +59,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
     product: Object,
@@ -66,30 +68,15 @@ const props = defineProps({
 console.log(props.product);
 
 const cartStore = useCartStore();
-const addToCart = () => {
-  cartStore.addToCart(props.product);
-  console.log(cartStore.cartCount);
-};
-
-const quantity = props.product.quantity || 0;
-const selectedSize = ref('');
-const selectedColor = ref('');
+const {itemQuantity, selectedSize, selectedColor, cartCount, cartItems} = storeToRefs(cartStore);
 const availableSizes = new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.size.data.attributes.type));
 const availableColors = new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.color.data.attributes.name));
 
-
-// const updateQuantity = () => {
-//   cartStore.updateQuantity(props.product, quantity.value);
-// };
-
-function updateQuantityInStore(newQuantity) {
-  cartStore.updateQuantity(props.product, newQuantity);
-}
-// watch(() => quantity, (newVal, oldVal) => {
-//   if (newVal !== oldVal) {
-//     updateQuantity();
-//   }
-// });
+const addToCart = () => {
+  cartStore.addToCart(props.product);
+  console.log(cartCount);
+  console.log(cartItems)
+};
 </script>
 
 <style scoped>
@@ -118,6 +105,31 @@ function updateQuantityInStore(newQuantity) {
 
     :nth-child(4) {
       font-weight: bold;
+    }
+
+    .variations {
+      label {
+        font-weight: bold;
+      }
+
+      select {
+        padding: 0.25rem;
+        border: 1px solid #e6a97a;
+        font-family: "Inter", sans-serif;
+        outline: none;
+        text-align: center;
+      }
+
+      option {
+        font-family: "Inter", sans-serif;
+        outline: none;
+        text-align: center;
+        font-weight: normal;
+      }
+
+      #size {
+        margin-right: 1rem;
+      }
     }
 
     .quantity {
