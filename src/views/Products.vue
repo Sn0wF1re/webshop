@@ -39,14 +39,9 @@ console.log(products.value);
 
 <style scoped>
 .products {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   margin: 2rem;
-  /* margin-top: 2rem; */
   min-height: 100vh;
 }
 </style>
