@@ -4,11 +4,12 @@
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id">
         </router-link>
         <div class="product-details">
+            <p class="category">{{ product.attributes.category.data.attributes.name }}</p>
             <div class="product-info">
                 <p>{{ product.attributes.mask_id }}</p>
                 <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
             </div>
-            <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+            <button class="add-to-cart" @click="goToProductInfo">View Product</button>
         </div>
     </div>
 </template>
@@ -16,21 +17,26 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useCartStore } from '@/stores/cartStore';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     product: Object,
     required: true
 });
-// log the product object
 
 onMounted(() => {
     console.log(props.product);
 });
 
 const cartStore = useCartStore();
+const router = useRouter();
 const addToCart = () => {
   cartStore.addToCart(props.product);
   console.log(cartStore.cartCount);
+};
+
+const goToProductInfo = () => {
+    router.push({ name: 'product', params: { productId: props.product.id, slug: props.product.attributes.slug } });
 };
 
 </script>
@@ -65,6 +71,11 @@ const addToCart = () => {
         justify-content: space-between;
         gap: 1rem;
         margin: 1rem 0;
+
+        .category {
+            font-size: 0.75rem;
+            font-weight: normal;
+        }
 
         .product-info {
             display: flex;
