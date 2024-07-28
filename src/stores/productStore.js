@@ -31,8 +31,6 @@ export const useProductStore = defineStore('productStore', () => {
             });
 
             product.value = response.data.data;
-            availableColors.value = product.value.product_variations.map(variation => variation.color);
-            availableSizes.value = product.value.product_variations.map(variation => variation.size);
             console.log(product.value);
 
         } catch (error) {
