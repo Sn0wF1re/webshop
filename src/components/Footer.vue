@@ -67,5 +67,4 @@
 </style>
 
 <script setup>
-// Your script logic here
 </script>
