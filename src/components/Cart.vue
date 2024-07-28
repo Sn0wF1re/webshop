@@ -1,86 +1,18 @@
 <template>
   <router-link to="/cart" class="cart">
-    <span v-if="!cartStore.cartCount" class="items-count">0</span>
-    <span v-else class="items-count">{{ cartStore.cartCount }}</span>
     <font-awesome-icon icon="cart-shopping" class="cart-shopping" />
+    <span v-if="!cartCount" class="items-count">0</span>
+    <span v-else class="items-count">{{ cartCount }}</span>
   </router-link>
-    <!-- <button class="cart" @click="showCart">
-      <span v-if="!cartStore.cartCount" class="items-count">0</span>
-      <span v-else class="items-count">{{ cartStore.cartCount }}</span>
-      <font-awesome-icon icon="cart-shopping" class="cart-shopping" />
-    </button>
-    <div class="cart-info" v-if="showCartInfo">
-      <div class="cart-header">
-        <h3>Shopping Cart</h3>
-        <span @click="showCart">close</span>
-      </div>
-      <div v-if="!cartStore.cartCount" class="empty-cart">
-        <p>No items in cart</p>
-      </div>
-      <div v-else class="cart-summary">
-        <div class="cart-item-info" v-for="product in products" :key="product.id">
-            <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id" />
-            <h3>{{ product.attributes.mask_id }}</h3>
-            <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
-            
-            <label :for="'update-quantity-' + product.id" >Quantity:</label>
-            <input type="number" v-model.number="product.quantity" @change="updateQuantityInStore(product)" placeholder="e.g 5" min="1" :id="'update-quantity-' + product.id"></input>
-            
-            <button @click="cartStore.removeFromCart(product)">Remove</button>
-        </div>
-        <div class="summary">
-            <h2>Summary</h2>
-            <p>Total: kes {{ totalKes }} / usd {{ totalUsd }}</p>
-            <div class="payment-gateways">
-              <button class="crypto" @click="">Pay with Crypto</button>
-              <button class="stripe" @click="handlePayment('stripe')">Pay with Stripe</button>
-              <HelioCheckout />
-            </div>
-        </div>
-      </div>
-    </div> -->
 </template>
 
 <script setup>
-import { ref, watch, onBeforeMount, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useCartStore } from '@/stores/cartStore';
-import HelioCheckout from '@/components/HelioCheckout.vue';
 
 
 const cartStore = useCartStore();
-const products = cartStore.cartItems;
-
-const totalKes = computed(() => cartStore.cartTotal('kes'));
-const totalUsd = computed(() => cartStore.cartTotal('usd'));
-let isLoaded = ref(false);
-
-const showCartInfo = ref(false);
-const showCart = () => {
-  showCartInfo.value = !showCartInfo.value;
-};
-
-function updateQuantityInStore(item) {
-  cartStore.updateQuantity(item, item.quantity);
-}
-// async handlePayment(gateway) {
-//   try {
-//     const checkoutData = await cartStore.checkout(gateway);
-//     if (gateway == 'stripe') {
-//       const stripe = await loadStripe('your-key');
-//       const { error } = await stripe.redirectToCheckout({
-//         sessionId: checkoutData.sessionId,
-//       });
-  
-//       if (error) {
-//         console.error(`Stripe redirect error: ${error}`);
-//       }
-//     } else if (gateway == 'crypto') {
-//       window.location.href = checkoutData.url;
-//     }
-//   } catch(err) {
-//     console.error(`Checkout error: ${err}`);
-//   }
-// }
+const { cartCount } = storeToRefs(cartStore);
 </script>
 
 <style scoped>
@@ -89,8 +21,6 @@ function updateQuantityInStore(item) {
   border: none;
   margin: 1rem 0;
   position: relative;
-  /* top: 0; */
-  /* right: 0; */
   cursor: pointer;
   
   .cart-shopping {
@@ -98,16 +28,15 @@ function updateQuantityInStore(item) {
     position: absolute;
     top: 0;
     right: 0;
+    margin-right: 4px;
   }
 
   .items-count {
     position: absolute;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
     color: #E47E30;
-    display: block;
-    right: -9px;
-    top: -13px;
+    right: -14px;
+    top: -12px;
   }
 
   .cart-shopping {
@@ -119,7 +48,6 @@ function updateQuantityInStore(item) {
     color: #272727;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
     padding: 1rem;
     width: 45%;
     position: fixed;
@@ -136,7 +64,6 @@ function updateQuantityInStore(item) {
         top: 0;
         position: absolute;
         margin-bottom: 1rem;
-        /* background-color: #E47E30; */
         color: #E47E30;
         width: 95%;
 
@@ -184,10 +111,8 @@ function updateQuantityInStore(item) {
             button {
               font-family: "Cambay", sans-serif;
               font-size: 1.25rem;
-              /* background-color: #E47E30; */
               margin: 0.25rem solid black;
               color: #272727;
-              /* padding: 0 0.25rem; */
             }
         }
 
