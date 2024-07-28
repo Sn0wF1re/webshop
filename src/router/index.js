@@ -37,13 +37,4 @@ const router = createRouter({
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  const shouldReload = (to.path === '/' && from.path.startsWith('/products/'));
-
-  if (shouldReload) {
-    router.go(0);
-  }
-  next();
-});
-
 export default router
