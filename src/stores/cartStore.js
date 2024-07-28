@@ -5,6 +5,9 @@ import axios from 'axios';
 export const useCartStore = defineStore('cartStore', () => {
     const cartItems = ref([]);
     const cartCount = ref(0);
+    const itemQuantity = ref(1);
+    const selectedColor = ref('');
+    const selectedSize = ref('');
 
     const cartTotal = (currency) => {
         if (currency == 'usd') {
@@ -16,20 +19,38 @@ export const useCartStore = defineStore('cartStore', () => {
 
 
     const addToCart = (product) => {
-        const existingProduct = cartItems.value.find(item => item.id === product.id);
+        const existingProduct = cartItems.value.find(item => item.id === product.id && item.color === product.color && item.size === product.size); 
 
-        if (existingProduct) {
-            console.log('existingProduct', existingProduct);
-        } else {
-            cartItems.value.push({ ...product, quantity: 1 });
-            cartCount.value++;
+        if (!selectedColor.value && !selectedSize.value) {
+            alert('Please select a color and size');
+            return;
+        }else if (!selectedColor.value) {
+            alert('Please select a color');
+            return;
+        } else if (!selectedSize.value) {
+            alert('Please select a size');
+            return;
         }
+
+        if (!existingProduct) {
+            cartItems.value.push({
+                ...product,
+                quantity: itemQuantity.value,
+                color: selectedColor.value,
+                size: selectedSize.value
+            });
+            cartCount.value += itemQuantity.value;
+        }
+        selectedColor.value = '';
+        selectedSize.value = '';
+
         console.log(existingProduct);
         console.log(cartItems.value);
+        console.log(`cart count: ${cartCount.value}`);
     }
 
     const updateQuantity = (product, newQuantity) => {
-        const existingProduct = cartItems.value.find(item => item.id === product.id);
+        const existingProduct = cartItems.value.find(item => item.id === product.id && item.color === product.color && item.size === product.size);
 
         if (newQuantity < 1) {
             newQuantity = 1;
@@ -42,17 +63,20 @@ export const useCartStore = defineStore('cartStore', () => {
     }
 
     const removeFromCart = (product) => {
-        const existingProduct = cartItems.value.find(item => item.id === product.id);
+        const existingProduct = cartItems.value.find(item => item.id === product.id && item.color === product.color && item.size === product.size);
 
         if (existingProduct) {
             cartCount.value -= existingProduct.quantity;
-            cartItems.value = cartItems.value.filter(item => item.id !== product.id);
+            cartItems.value = cartItems.value.filter(item => item.id !== product.id && item.color !== product.color && item.size !== product.size);
         }
     }
 
     return {
         cartItems,
         cartCount,
+        itemQuantity,
+        selectedColor,
+        selectedSize,
         cartTotal,
         updateQuantity,
         addToCart,
