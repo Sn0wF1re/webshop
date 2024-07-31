@@ -35,8 +35,8 @@ const { cartCount } = storeToRefs(cartStore);
     position: absolute;
     font-family: 'Inter', sans-serif;
     color: #E47E30;
-    right: -14px;
-    top: -12px;
+    right: -8px;
+    top: -14px;
   }
 
   .cart-shopping {
