@@ -41,6 +41,7 @@
         color: #0a0908;
         font-family: "Inter", sans-serif;
         font-weight: 500;
+        font-size: 1.5rem;
     }
 
     .contacts, .info, .newsletter {
