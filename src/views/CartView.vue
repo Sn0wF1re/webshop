@@ -12,19 +12,28 @@
         <div class="cart-item-info" v-for="product in cartItems" :key="`${product.id}-${product.color}-${product.size}`">
             <img :src="product.attributes.cover_photo.data.attributes.formats.small.url"
                 :alt="product.attributes.mask_id" />
-            <h3>{{ product.attributes.mask_id }}</h3>
-            <h3>{{ product.color }}</h3>
-            <h3>{{ product.size }}</h3>
+            <p>{{ product.attributes.mask_id }}</p>
+            <p>{{ product.color }}</p>
+            <p>{{ product.size }}</p>
             <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
 
             <div class="quantity">
                 <label :for="'update-quantity-' + product.id">Quantity: </label>
-                <input 
+                <!-- <input 
                 type="number"
                 v-model.number="product.quantity"
                 @change="updateQuantity(product, Number($event.target.value))"
                 placeholder="e.g 5" min="1"
-                :id="'update-quantity-' + product.id">
+                :id="'update-quantity-' + product.id"> -->
+                <q-input
+                  :id="'update-quantity-' + product.id"
+                  v-model.number="product.quantity"
+                  @change="updateQuantity(product, Number($event.target.value))"
+                  type="number"
+                  min="1"
+                  borderless
+                  style="max-width: 50px"
+                />
             </div>
 
             <button @click="cartStore.removeFromCart(product)" class="remove">Remove</button>
@@ -51,7 +60,7 @@ import HelioCheckout from '@/components/HelioCheckout.vue';
 
 
 const cartStore = useCartStore();
-const { cartItems, itemQuantity } = storeToRefs(cartStore);
+const { cartItems  } = storeToRefs(cartStore);
 
 const totalKes = computed(() => cartStore.cartTotal('kes'));
 const totalUsd = computed(() => cartStore.cartTotal('usd'));
@@ -87,6 +96,7 @@ const updateQuantity = (product, quantity) => {
         h2 {
             font-family: "Inter", sans-serif;
             font-size: 1.5rem;
+            font-weight: bold;
             color: #E47E30;
         }
     }
@@ -108,7 +118,11 @@ const updateQuantity = (product, quantity) => {
         object-fit: cover;
         }
 
-        input {
+        p {
+            margin: 0;
+        }
+
+        /* input {
             width: 3rem;
             height: 1rem;
             padding: 0.25rem;
@@ -117,6 +131,13 @@ const updateQuantity = (product, quantity) => {
 
         label {
             display: inline;
+        } */
+
+        .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
 
         .remove {
@@ -145,6 +166,7 @@ const updateQuantity = (product, quantity) => {
         h2 {
             font-family: "Inter", sans-serif;
             font-size: 1.5rem;
+            font-weight: bold;
             color: #E47E30;
         }
 
