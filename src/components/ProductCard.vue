@@ -47,14 +47,14 @@ const goToProductInfo = () => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
     padding: 1rem;
     /* border: 16px solid #E47E30; */
     border-radius: none;
-    width: 15rem;
+    width: 16rem;
     img {
         width: 100%;
-        height: 15rem;
+        height: auto;
         background-color: whitesmoke;
         }
 
