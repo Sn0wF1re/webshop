@@ -1,12 +1,14 @@
 <template>
     <main>
-        <div v-if="loading">Loading</div>
+        <div v-if="loading" class="loading">
+            <q-spinner-puff color="primary" size="5.5rem" />
+        </div>
         
         <div v-else-if="product">
             <ProductInfoCard :product="product" />
         </div>
 
-        <div v-else>
+        <div v-else class="not-found">
             Product not found or loading failed
         </div>
     </main>
@@ -48,8 +50,16 @@ console.log(product.value);
 main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
     padding: 2rem;
+    width: 100%;
     min-height: 100vh;
+
+    .loading, .not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>
