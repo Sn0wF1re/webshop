@@ -1,6 +1,6 @@
 <template>
     <div class="navigation">
-        <p class="logo">Pixel Morans</p>
+        <img class="logo" src="@/assets/pmlogo.svg">
         <div class="sub-nav">
             <router-link to="/">Home</router-link>
             <p>Shop</p>
@@ -32,6 +32,11 @@ import Cart from '@/components/Cart.vue';
     padding: 1rem 3rem;
     font-family: "Inter", sans-serif;
     font-weight: 600;
+
+    .logo {
+        height: 4rem;
+        width: auto;
+    }
 
     .sub-nav {
         flex: 2;
