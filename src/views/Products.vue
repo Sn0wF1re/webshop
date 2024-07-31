@@ -17,7 +17,9 @@ console.log(products.value);
 
 <template>
   <main class="products">
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading" class="loading">
+      <q-spinner-puff color="primary" size="5.5rem" />
+    </div>
     <ProductCard v-for="product in products" :product="product" />
     <ProductCard v-for="product in products" :product="product" />
     <ProductCard v-for="product in products" :product="product" />
@@ -43,5 +45,15 @@ console.log(products.value);
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   margin: 2rem;
   min-height: 100vh;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #ffffff;
+  }
 }
 </style>
