@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
-import axios from 'axios';
+import { ref } from 'vue';
+import { Dialog } from 'quasar';
 
 export const useCartStore = defineStore('cartStore', () => {
     const cartItems = ref([]);
@@ -22,13 +22,22 @@ export const useCartStore = defineStore('cartStore', () => {
         const existingProduct = cartItems.value.find(item => item.id === product.id && item.color === product.color && item.size === product.size); 
 
         if (!selectedColor.value && !selectedSize.value) {
-            alert('Please select a color and size');
+            Dialog.create({
+                title: 'Alert',
+                message: 'Please select a color and size'
+            });
             return;
         }else if (!selectedColor.value) {
-            alert('Please select a color');
+            Dialog.create({
+                title: 'Alert',
+                message: 'Please select a color'
+            });
             return;
         } else if (!selectedSize.value) {
-            alert('Please select a size');
+            Dialog.create({
+                title: 'Alert',
+                message: 'Please select a size'
+            });
             return;
         }
 
