@@ -9,34 +9,46 @@
             <p>Check your items before proceeding to pay</p>
         </div>
 
-        <div class="cart-item-info" v-for="product in cartItems" :key="`${product.id}-${product.color}-${product.size}`">
-            <img :src="product.attributes.cover_photo.data.attributes.formats.small.url"
-                :alt="product.attributes.mask_id" />
-            <p>{{ product.attributes.mask_id }}</p>
-            <p>{{ product.color }}</p>
-            <p>{{ product.size }}</p>
-            <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
+        <div class="cart-item-info">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Color</th>
+                        <th>Size</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
 
-            <div class="quantity">
-                <label :for="'update-quantity-' + product.id">Quantity: </label>
-                <!-- <input 
-                type="number"
-                v-model.number="product.quantity"
-                @change="updateQuantity(product, Number($event.target.value))"
-                placeholder="e.g 5" min="1"
-                :id="'update-quantity-' + product.id"> -->
-                <q-input
-                  :id="'update-quantity-' + product.id"
-                  v-model.number="product.quantity"
-                  @change="updateQuantity(product, Number(product.quantity))"
-                  type="number"
-                  min="1"
-                  borderless
-                  style="max-width: 50px"
-                />
-            </div>
-
-            <button @click="cartStore.removeFromCart(product)" class="remove">Remove</button>
+                <tbody>
+                    <tr v-for="product in cartItems" :key="`${product.id}-${product.color}-${product.size}`">
+                        <td><img :src="product.attributes.cover_photo.data.attributes.formats.small.url"
+                            :alt="product.attributes.mask_id" /></td>
+                        <td><p>{{ product.attributes.mask_id }}</p></td>
+                        <td><p>{{ product.color }}</p></td>
+                        <td><p>{{ product.size }}</p></td>
+                        <td><p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p></td>
+                        <td>
+                            <div class="quantity">
+                                <label :for="'update-quantity-' + product.id">Quantity: </label>
+                                <q-input
+                                  :id="'update-quantity-' + product.id"
+                                  v-model.number="product.quantity"
+                                  @change="updateQuantity(product, Number(product.quantity))"
+                                  type="number"
+                                  min="1"
+                                  borderless
+                                  style="max-width: 50px"
+                                />
+                            </div>
+                        </td>
+                        <td><button @click="cartStore.removeFromCart(product)" class="remove">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="summary">
@@ -105,12 +117,31 @@ const updateQuantity = (product, quantity) => {
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #e6a97a;
         padding: 8px;
         gap: 5rem;
         font-family: "Cambay", sans-serif;
-        width: 90%;
+        width: 95%;
         margin: 0 3rem;
+
+        table, tr {
+            border: 1px solid #e6a97a;
+        }
+        
+        table {
+            width: 100vw;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #E47E30;
+            padding: 1rem 0;
+        }
+
+        td {
+            padding: 0.5rem 2rem;
+            margin: 0.5rem;
+            text-align: center;
+        }
 
         img {
         width: 3rem;
@@ -121,17 +152,6 @@ const updateQuantity = (product, quantity) => {
         p {
             margin: 0;
         }
-
-        /* input {
-            width: 3rem;
-            height: 1rem;
-            padding: 0.25rem;
-            font-family: "Cambay", sans-serif;
-        }
-
-        label {
-            display: inline;
-        } */
 
         .quantity {
             display: flex;
@@ -206,9 +226,9 @@ button {
     border-radius: 8px;
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
     .cart-info {
         width: 95%;
     }
-}
+} */
 </style>
