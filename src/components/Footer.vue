@@ -30,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #e47e30;
-    padding: 3rem;
+    padding: 2rem;
     column-gap: 3rem;
     position: relative;
     bottom: 0;
