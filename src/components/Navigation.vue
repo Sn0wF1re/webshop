@@ -9,8 +9,7 @@
 
         <div class="far-right">
             <button class="account">
-                <font-awesome-icon icon="fa-soli fa-user" />
-                Account
+                <font-awesome-icon icon="fa-solid fa-user" />
             </button>
             <Cart />
         </div>
@@ -29,7 +28,7 @@ import Cart from '@/components/Cart.vue';
     align-items: center;
     background-color: #0a0908;
     color: #e47e30;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     font-family: "Inter", sans-serif;
     font-weight: 600;
 
@@ -41,17 +40,25 @@ import Cart from '@/components/Cart.vue';
     .sub-nav {
         flex: 2;
         display: flex;
+        align-items: center;
         justify-content: center;
         gap: 2rem;
         a {
             color: #e47e30;
             cursor: pointer;
         }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
     }
 
     .far-right {
         display: flex;
-        gap: 3rem;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
 
         .account {
             border: none;
