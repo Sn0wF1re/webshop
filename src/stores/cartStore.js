@@ -76,7 +76,7 @@ export const useCartStore = defineStore('cartStore', () => {
 
         if (existingProduct) {
             cartCount.value -= existingProduct.quantity;
-            cartItems.value = cartItems.value.filter(item => item.id !== product.id && item.color !== product.color && item.size !== product.size);
+            cartItems.value = cartItems.value.filter(item => !(item.id === product.id && item.color === product.color && item.size === product.size));
         }
     }
 
