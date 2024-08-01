@@ -77,6 +77,7 @@ const cartStore = useCartStore();
 const {itemQuantity, selectedSize, selectedColor, cartCount, cartItems} = storeToRefs(cartStore);
 const availableSizes = [...new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.size.data.attributes.type))];
 const availableColors = [...new Set(props.product.attributes.product_variations.data.map((variation) => variation.attributes.color.data.attributes.name))];
+const stars = ref(4);
 
 const addToCart = () => {
   cartStore.addToCart(props.product);
