@@ -28,7 +28,7 @@
                 <q-input
                   :id="'update-quantity-' + product.id"
                   v-model.number="product.quantity"
-                  @change="updateQuantity(product, Number($event.target.value))"
+                  @change="updateQuantity(product, Number(product.quantity))"
                   type="number"
                   min="1"
                   borderless
