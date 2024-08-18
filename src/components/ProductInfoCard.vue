@@ -99,10 +99,12 @@ const addToCart = () => {
   height: 100%;
 
   .product-info {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 5rem;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     margin-left: 1rem;
     font-family: "Cambay", sans-serif;
 
@@ -162,7 +164,7 @@ const addToCart = () => {
     .right {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       /* gap: 1rem; */
       font-family: "Cambay", sans-serif;
   
