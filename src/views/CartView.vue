@@ -130,17 +130,17 @@ const updateQuantity = (product, quantity) => {
         table {
             width: 100vw;
             border-collapse: collapse;
-        }
 
-        th {
-            background-color: #E47E30;
-            padding: 1rem 0;
-        }
-
-        td {
-            padding: 0.5rem 2rem;
-            margin: 0.5rem;
-            text-align: center;
+            th {
+                background-color: #E47E30;
+                padding: 1rem 0;
+            }
+    
+            td {
+                padding: 0.5rem 2rem;
+                margin: 0.5rem;
+                text-align: center;
+            }
         }
 
         img {
@@ -226,9 +226,31 @@ button {
     border-radius: 8px;
 }
 
-/* @media (max-width: 700px) {
-    .cart-info {
-        width: 95%;
+@media (max-width: 850px) {
+    .cart-summary {
+        width: 100%;
+        .cart-item-info {
+            width: 100%;
+            margin: 0;
+
+            table {
+                th, td {
+                    padding: 0.25rem;
+                }
+
+                img {
+                    width: 2rem;
+                }
+
+                input {
+                    width: 2rem;
+                }
+
+                .remove {
+                    padding: 0.25rem;
+                }
+            }
+        }
     }
-} */
+}
 </style>
