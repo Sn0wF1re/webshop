@@ -65,6 +65,18 @@
         }
     }
 }
+
+@media (max-width: 850px) {
+    .footer {
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .contacts, .info, .newsletter {
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}
 </style>
 
 <script setup>

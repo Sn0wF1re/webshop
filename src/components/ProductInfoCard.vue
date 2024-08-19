@@ -3,10 +3,15 @@
     <img :src="product.attributes.cover_photo.data.attributes.formats.small.url" :alt="product.attributes.mask_id" />
     <div class="product-info">
       <div class="left">
-        <h3>{{ product.attributes.mask_id }}</h3>
-        <q-rating size="18px" v-model="stars" readonly disable color="primary" />
-        <p>category: {{ product.attributes.category.data.attributes.name }}</p>
-        <p>kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
+        <div class="labels">
+          <h3>{{ product.attributes.mask_id }}</h3>
+
+          <div class="rate-category">
+            <q-rating size="18px" v-model="stars" readonly disable color="primary" />
+            <p>category: {{ product.attributes.category.data.attributes.name }}</p>
+          </div>
+        </div>
+        <p class="price">kes {{ product.attributes.price_kes }} / usd {{ product.attributes.price_usd }}</p>
   
         <div class="variations">
         <!-- <label for="size">Size: </label> -->
@@ -113,7 +118,7 @@ const addToCart = () => {
       font-size: 1.5rem;
     }
 
-    :nth-child(4) {
+    .price {
       font-weight: bold;
     }
 
@@ -195,6 +200,38 @@ const addToCart = () => {
     font-family: "Inter", sans-serif;
     font-weight: bold;
     width: 6rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .product-info-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+
+    img {
+      width: 100%;
+    }
+
+    .product-info {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-left: 0;
+
+      .left {
+        .labels {
+          display: flex;
+          justify-content: space-between;
+
+          .rate-category {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+        }
+      }
+    }
   }
 }
 </style>

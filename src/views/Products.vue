@@ -81,17 +81,31 @@ console.log('products: ' + productStore.products);
     z-index: 100;
     background-color: #ffffff;
   }
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-family: 'Cambay', sans-serif;
+  }
+  
+  .products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
 }
 
-.search {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  font-family: 'Cambay', sans-serif;
-}
 
-.products-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+@media (max-width: 850px) {
+  .products {
+    margin: 0.5rem;
+    padding: 0.5rem;
+
+    .products-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 </style>

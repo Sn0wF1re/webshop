@@ -6,13 +6,13 @@
             <p>Shop</p>
             <p>Blog</p>
         </div>
-
         <div class="far-right">
             <button class="account">
                 <font-awesome-icon icon="fa-solid fa-user" />
             </button>
             <Cart />
         </div>
+
     </div>
 
 </template>
@@ -69,6 +69,25 @@ import Cart from '@/components/Cart.vue';
             font-family: "Inter", sans-serif;
             font-weight: 600;
             font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .navigation {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+
+        .logo {
+            height: 3rem;
+        }
+
+        .sub-nav {
+            gap: 1rem;
+        }
+
+        .far-right {
+            gap: 1rem;
         }
     }
 }

@@ -86,6 +86,8 @@ const goToProductInfo = () => {
             font-family: "Inter", sans-serif;
             font-size: 1rem;
             font-weight: bold;
+            padding: 0;
+            margin: 0;
         }
     }
     .add-to-cart {
@@ -96,6 +98,26 @@ const goToProductInfo = () => {
         padding: 0.5rem;
         font-family: "Inter", sans-serif;
         font-weight: bold;
+    }
+}
+
+@media (max-width: 850px) {
+    .product-display {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            gap: 0.25rem;
+            margin: 0.25rem 0;
+
+            .product-info {
+                margin-bottom: 0.25rem;
+            }
+        }
     }
 }
 </style>
